@@ -1,11 +1,13 @@
 import { client } from "@/sanity/lib/client";
 import { STARTUP_BY_ID_QUERY } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 import markdownit from "markdown-it";
 import { formatDate } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
+import { Skeleton } from "@/components/ui/skeleton";
+import View from "@/components/View";
 export let experimental_ppr = true;
 export default async function page({
   params,
@@ -32,7 +34,7 @@ export default async function page({
         />
         <div className="space-y-5 mt-10 max-w-4xl mx-auto">
           <div className="flex-between gap-5">
-            <Link href={`user/${post.author?._id}`} className="flex gap-2">
+            <Link href={`user/${post.author?._id}`} className="flex gap-3">
               <Image
                 alt="avatar"
                 className="rounded-full drop-shadow-lg"
@@ -40,10 +42,29 @@ export default async function page({
                 width={64}
                 height={64}
               />
-              <p className=""></p>
+              <div className="">
+                <p className="text-20-medium">{post.author?.name}</p>
+                <p className="text-16-medium !text-black-300">
+                  @{post.author?.username}
+                </p>
+              </div>
             </Link>
+            <p className="category-tag">{post?.category}</p>
           </div>
+          <h3 className="text-30-bold">Pitch Detailes</h3>
+          {parcedContent ? (
+            <article
+              className="prose max-w-4xl font-work-sans break-all"
+              dangerouslySetInnerHTML={{ __html: parcedContent }}
+            />
+          ) : (
+            <p className="no-result">No Details Provided</p>
+          )}
         </div>
+        <hr className="divider" />
+        <Suspense fallback={<Skeleton className="view_skeleton" />}>
+          <View id={id} />
+        </Suspense>
       </section>
     </>
   );
