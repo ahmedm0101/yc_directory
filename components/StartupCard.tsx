@@ -31,11 +31,11 @@ export default function StartupCard({ post }: { post: StartupCardType }) {
         </div>
         <Link href={`/user/${author?._id}`}>
           <Image
-            src="https://placehold.co/48x48"
+            src={author?.image!}
             className="rounded-full"
             width={48}
             height={48}
-            alt="placeholder"
+            alt={author?.name!}
           />
         </Link>
       </div>
