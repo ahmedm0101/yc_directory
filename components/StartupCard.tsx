@@ -25,7 +25,7 @@ export default function StartupCard({ post }: { post: StartupCardType }) {
           <Link href={`/user/${author?._id}`}>
             <p className="text-16-medium line-clamp-1">{author?.name}</p>
           </Link>
-          <Link href={`/user/${_id}`}>
+          <Link href={`/startup/${_id}`}>
             <p className="text-26-semibold line-clamp-1">{title}</p>
           </Link>
         </div>
@@ -39,7 +39,7 @@ export default function StartupCard({ post }: { post: StartupCardType }) {
           />
         </Link>
       </div>
-      <Link href={`/user/${_id}`}>
+      <Link href={`/startup/${_id}`}>
         <p className="startup-card_desc">{description}</p>
         <img src={image} alt="placeholder" className="startup-card_img" />
       </Link>
