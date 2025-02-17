@@ -34,7 +34,7 @@ export default async function page({
         />
         <div className="space-y-5 mt-10 max-w-4xl mx-auto">
           <div className="flex-between gap-5">
-            <Link href={`user/${post.author?._id}`} className="flex gap-3">
+            <Link href={`/user/${post.author?._id}`} className="flex gap-3">
               <Image
                 alt="avatar"
                 className="rounded-full drop-shadow-lg"
